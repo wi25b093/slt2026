@@ -22,6 +22,15 @@ public class Board {
         return cells[x][y] == EMPTY;
     }
 
+    /**
+     * Platziert den Marker eines Spielers auf einer leeren Zelle (US-01).
+     *
+     * @param x      Reihe (0-2)
+     * @param y      Spalte (0-2)
+     * @param marker Marker des Spielers ('X' oder 'O')
+     * @throws IllegalArgumentException wenn Koordinaten außerhalb des Spielfelds
+     *                                  liegen oder die Zelle bereits belegt ist
+     */
     public void place(int x, int y, char marker) {
         if (!isInBounds(x, y)) {
             throw new IllegalArgumentException("Coordinates out of bounds: (" + x + "," + y + ")");

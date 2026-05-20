@@ -1,0 +1,46 @@
+name: CD - Release JAR on main
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+jobs:
+  release-jar:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+          cache: maven
+
+      - name: Build executable JAR (with tests)
+        run: mvn -B clean package
+
+      - name: Upload JAR as workflow artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: tictactoe-jar
+          path: target/tictactoe.jar
+          if-no-files-found: error
+
+      - name: Create / update GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: build-${{ github.run_number }}
+          name: TicTacToe Build ${{ github.run_number }}
+          body: |
+            Automatisches Release des main-Branches.
+            Commit: ${{ github.sha }}
+          files: target/tictactoe.jar
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

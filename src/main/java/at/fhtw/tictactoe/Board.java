@@ -60,6 +60,14 @@ public class Board {
         }
     }
 
+    /**
+     * Gibt das aktuelle Spielfeld formatiert auf der Konsole aus (US-02).
+     *
+     * Belegte Zellen zeigen den jeweiligen Marker (X oder O),
+     * leere Zellen werden als Leerzeichen dargestellt.
+     * Reihen werden durch '|' getrennt, das Feld wird oben und unten
+     * mit '-' eingerahmt.
+     */
     public void print() {
         System.out.println("-------");
         for (int i = 0; i < SIZE; i++) {

@@ -67,6 +67,15 @@ public class TicTacToe {
         currentPlayer = (currentPlayer == player1) ? player2 : player1;
     }
 
+    /**
+     * Prüft, ob das Spiel mit einem Sieger beendet ist.
+     *
+     * Ein Spieler gewinnt, sobald er drei seiner Markierungen
+     * in einer Reihe, Spalte oder Diagonale platziert hat.
+     *
+     * @return true, wenn ein Spieler gewonnen hat; false sonst
+     *         (Spiel läuft noch oder endet im Unentschieden)
+     */
     public boolean hasWinner() {
         char m = currentPlayer.getMarker();
 

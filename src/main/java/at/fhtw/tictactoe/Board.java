@@ -52,6 +52,13 @@ public class Board {
         return true;
     }
 
+    /**
+     * Setzt das Spielfeld in den Ausgangszustand zurück.
+     *
+     * Alle Zellen werden mit dem EMPTY-Marker (Leerzeichen) überschrieben,
+     * sodass ein neues Spiel gestartet werden kann, ohne ein neues
+     * Board-Objekt zu erzeugen.
+     */
     public void clear() {
         for (int i = 0; i < SIZE; i++) {
             for (int j = 0; j < SIZE; j++) {
